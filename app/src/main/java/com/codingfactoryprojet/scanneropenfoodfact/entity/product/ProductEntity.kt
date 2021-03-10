@@ -1,4 +1,4 @@
-package com.codingfactoryprojet.scanneropenfoodfact.product
+package com.codingfactoryprojet.scanneropenfoodfact.entity.product
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
