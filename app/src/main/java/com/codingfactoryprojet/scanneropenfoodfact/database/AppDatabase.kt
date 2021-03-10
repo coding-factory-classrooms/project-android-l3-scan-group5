@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.codingfactoryprojet.scanneropenfoodfact.entity.product.Product
 import com.codingfactoryprojet.scanneropenfoodfact.service.product.ProductDao
 
-@Database(entities = [Product::class], version = 1)
+@Database(entities = [Product::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun productDao(): ProductDao
 

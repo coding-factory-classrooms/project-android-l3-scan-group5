@@ -5,8 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.github.kittinunf.fuel.Fuel
 import org.json.JSONObject
-import java.time.LocalDateTime
-import java.util.*
+import java.time.LocalDate
 
 const val apiURL = " https://world.openfoodfacts.org/api/v0/product/"
 
@@ -20,7 +19,7 @@ data class Product(
     @ColumnInfo(name = "ingredients") val ingredients: String ?,
     @ColumnInfo(name = "categories") val categories: String?,
     @ColumnInfo(name = "brand") val brand: String?,
-    @ColumnInfo(name = "created_at") val createdAt: LocalDateTime
+    @ColumnInfo(name = "created_at") val createdAt: String? = LocalDate.now().toString()
 )
 
 fun getProductData(barcode: Long) {
@@ -34,7 +33,7 @@ fun getProductData(barcode: Long) {
            val ingredientsText = data.getString("ingredients_text")
            val categories = data.getString("categories")
            val brand = data.getString("brand_owner_imported")
-           Product(
+           /* Product(
                barcode = barcode,
                name = productName,
                imageURL = imageURl,
@@ -43,7 +42,7 @@ fun getProductData(barcode: Long) {
                categories = categories,
                brand = brand,
                createdAt = LocalDateTime.now()
-           )
+           )*/
        }
    }
 }
