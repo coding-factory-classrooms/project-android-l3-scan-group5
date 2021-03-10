@@ -24,9 +24,9 @@ class ProductAdapter(private var products: List<Product>) : RecyclerView.Adapter
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val product = products[position]
         with (holder.binding){
-        nameTextView.text = product.name
-        nutritionImageView.setImageResource(product.nutritionImageId)
-        productImageView.setImageResource(product.imageId)
+            nameTextView.text = product.name
+            nutritionImageView.setImageResource(product.nutritionImageId)
+            productImageView.setImageResource(product.imageId)
         }
 
     }
