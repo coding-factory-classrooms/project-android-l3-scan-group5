@@ -11,14 +11,16 @@ const val apiURL = " https://world.openfoodfacts.org/api/v0/product/"
 
 @Entity
 data class Product(
-    @PrimaryKey(autoGenerate = true) val id: Int,
+    @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "barcode") val barcode: Long,
     @ColumnInfo(name = "name") val name: String?,
     @ColumnInfo(name = "image_url") val imageURL: String?,
     @ColumnInfo(name = "labels") val labels: String?,
-    @ColumnInfo(name = "ingredients") val ingredients: String ?,
     @ColumnInfo(name = "categories") val categories: String?,
     @ColumnInfo(name = "brand") val brand: String?,
+    @ColumnInfo(name = "nutriscore") val nutriscore: Int,
+    @ColumnInfo(name = "calories") val caloriesPer100g: Int,
+    @ColumnInfo(name = "is_favorite") val isFavorite: Boolean? = false,
     @ColumnInfo(name = "created_at") val createdAt: String? = LocalDate.now().toString()
 )
 
@@ -30,19 +32,10 @@ fun getProductData(barcode: Long) {
            val productName = data.getString("product_name")
            val imageURl = data.getString("image_url")
            val labels = data.getString("labels")
-           val ingredientsText = data.getString("ingredients_text")
            val categories = data.getString("categories")
            val brand = data.getString("brand_owner_imported")
-           /* Product(
-               barcode = barcode,
-               name = productName,
-               imageURL = imageURl,
-               labels = labels,
-               ingredients = ingredientsText,
-               categories = categories,
-               brand = brand,
-               createdAt = LocalDateTime.now()
-           )*/
+           val nutriscore = data.getInt("nutriscore_grade")
+           val caloriesPer100g = data.getJSONObject("nutriments").getInt("energy-kcal")
        }
    }
 }
