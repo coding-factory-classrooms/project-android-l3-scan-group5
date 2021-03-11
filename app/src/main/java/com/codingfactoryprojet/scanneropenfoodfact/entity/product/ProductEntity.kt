@@ -18,7 +18,7 @@ data class Product(
     @ColumnInfo(name = "labels") val labels: String?,
     @ColumnInfo(name = "categories") val categories: String?,
     @ColumnInfo(name = "brand") val brand: String?,
-    @ColumnInfo(name = "nutriscore") val nutriscore: Int,
+    @ColumnInfo(name = "nutriscore") val nutriscore: String,
     @ColumnInfo(name = "calories") val caloriesPer100g: Int,
     @ColumnInfo(name = "is_favorite") val isFavorite: Boolean? = false,
     @ColumnInfo(name = "created_at") val createdAt: String? = LocalDate.now().toString()
@@ -34,7 +34,7 @@ fun getProductData(barcode: Long) {
            val labels = data.getString("labels")
            val categories = data.getString("categories")
            val brand = data.getString("brand_owner_imported")
-           val nutriscore = data.getInt("nutriscore_grade")
+           val nutriscore = data.getString("nutriscore_grade")
            val caloriesPer100g = data.getJSONObject("nutriments").getInt("energy-kcal")
        }
    }
