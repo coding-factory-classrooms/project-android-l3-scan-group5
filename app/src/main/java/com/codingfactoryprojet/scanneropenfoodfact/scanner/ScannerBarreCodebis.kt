@@ -47,7 +47,7 @@ public final class ScannerBarreCodebis : AppCompatActivity() {
         scannerbarcode.errorCallback = ErrorCallback {
             runOnUiThread {
                 Toast.makeText(
-                    this@ScannerBarreCodebis, "Camera initialisation erreur: ${it.message}",
+                    this@ScannerBarreCodebis, "Camera initialisation error: ${it.message}",
                     Toast.LENGTH_LONG
                 ).show()
             }
