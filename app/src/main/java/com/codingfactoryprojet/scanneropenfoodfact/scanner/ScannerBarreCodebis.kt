@@ -25,19 +25,22 @@ public final class ScannerBarreCodebis : AppCompatActivity() {
         binding = ActivityScannerBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupPermissions()
-        scannerbarcode = CodeScanner(this, binding.scannerView)
 
+        val result:String
+        scannerbarcode = CodeScanner(this, binding.scannerView)
         scannerbarcode.camera = CodeScanner.CAMERA_BACK
         scannerbarcode.formats = CodeScanner.ALL_FORMATS
 
         scannerbarcode.autoFocusMode = AutoFocusMode.SAFE
         scannerbarcode.scanMode = ScanMode.SINGLE
+
         scannerbarcode.isAutoFocusEnabled = true
         scannerbarcode.isFlashEnabled = false
 
         scannerbarcode.decodeCallback = DecodeCallback {
             runOnUiThread {
                 binding.resultTextView.text = it.text
+                
             }
         }
 
@@ -82,7 +85,8 @@ public final class ScannerBarreCodebis : AppCompatActivity() {
     override fun onRequestPermissionsResult(
         requestCode: Int, permissions: Array<out String>,
         grantResults: IntArray
-    ) {
+    )
+    {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             CAMERA_REQUEST_CODE -> {
