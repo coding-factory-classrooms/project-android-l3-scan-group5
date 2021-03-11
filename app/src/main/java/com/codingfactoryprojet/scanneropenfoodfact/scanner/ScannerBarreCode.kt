@@ -16,7 +16,7 @@ import com.codingfactoryprojet.scanneropenfoodfact.databinding.ActivityScannerBi
 
 private const val CAMERA_REQUEST_CODE = 101
 
-public final class ScannerBarreCodebis : AppCompatActivity() {
+public final class ScannerBarreCode : AppCompatActivity() {
     private lateinit var scannerbarcode: CodeScanner
     private lateinit var binding: ActivityScannerBinding
 
@@ -47,7 +47,7 @@ public final class ScannerBarreCodebis : AppCompatActivity() {
         scannerbarcode.errorCallback = ErrorCallback {
             runOnUiThread {
                 Toast.makeText(
-                    this@ScannerBarreCodebis, "Camera initialisation erreur: ${it.message}",
+                    this@ScannerBarreCode, "Camera initialisation error: ${it.message}",
                     Toast.LENGTH_LONG
                 ).show()
             }
@@ -92,8 +92,8 @@ public final class ScannerBarreCodebis : AppCompatActivity() {
             CAMERA_REQUEST_CODE -> {
                 if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(
-                        this@ScannerBarreCodebis,
-                        "Besoin de ta permission pour accéder à ta camera",
+                        this@ScannerBarreCode,
+                        "Need permission to access camera",
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
