@@ -14,7 +14,7 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAccueilBinding.inflate(layoutInflater)
+        binding = HomeActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.scanButton.setOnClickListener{
             scanCode()
