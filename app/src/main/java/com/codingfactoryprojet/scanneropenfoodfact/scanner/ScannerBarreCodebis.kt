@@ -17,7 +17,7 @@ import com.codingfactoryprojet.scanneropenfoodfact.databinding.ActivityScannerBi
 private const val CAMERA_REQUEST_CODE = 101
 
 public final class ScannerBarreCodebis : AppCompatActivity() {
-    private lateinit var scannerbarcode: CodeScanner
+    private lateinit var barcodeScanner: CodeScanner
     private lateinit var binding: ActivityScannerBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
