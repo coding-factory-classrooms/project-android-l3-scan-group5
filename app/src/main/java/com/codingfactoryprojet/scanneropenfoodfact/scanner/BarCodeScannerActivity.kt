@@ -16,7 +16,7 @@ import com.codingfactoryprojet.scanneropenfoodfact.databinding.ActivityScannerBi
 
 private const val CAMERA_REQUEST_CODE = 101
 
-public final class ScannerBarreCode : AppCompatActivity() {
+class ScannerBarreCode : AppCompatActivity() {
     private lateinit var scannerbarcode: CodeScanner
     private lateinit var binding: ActivityScannerBinding
 
@@ -49,6 +49,7 @@ public final class ScannerBarreCode : AppCompatActivity() {
                 Toast.makeText(this@ScannerBarreCode, "Camera initialisation error: ${it.message}", Toast.LENGTH_LONG).show()
             }
         }
+
 
         binding.scannerView.setOnClickListener {
             scannerbarcode.startPreview()
