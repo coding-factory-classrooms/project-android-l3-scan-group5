@@ -4,42 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
 import com.codingfactoryprojet.scanneropenfoodfact.entity.product.Product
 import com.codingfactoryprojet.scanneropenfoodfact.service.product.ProductDao
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 
 @Database(entities = [Product::class], version = 1, exportSchema = false)
 abstract class ProductRoomDatabase : RoomDatabase() {
     abstract fun productDao(): ProductDao
-
-    /*private class ProductDatabaseCallBack(
-        private val scope: CoroutineScope
-    ) : RoomDatabase.Callback() {
-        override fun onCreate(db: SupportSQLiteDatabase) {
-            super.onCreate(db)
-            *//*INSTANCE?.let { database ->
-                scope.launch {
-                    populateDatabase(database.productDao())
-                }
-            }*//*
-        }
-
-        *//*suspend fun populateDatabase(productDao: ProductDao) {
-            var p1 = Product(
-                barcode = 737628064502,
-                brand = "truc",
-                categories = "dhfdfd",
-                imageURL = "https://static.openfoodfacts.org/images/products/073/762/806/4502/ingredients_en.10.200.jpg",
-                nutriscore = "c",
-                caloriesPer100g = 230,
-                labels = "dfdfd",
-                name = "truc"
-            )
-            productDao.insert(p1)
-        }*//*
-    }*/
 
     companion object {
         @Volatile
@@ -53,7 +24,7 @@ abstract class ProductRoomDatabase : RoomDatabase() {
                     context.applicationContext,
                     ProductRoomDatabase::class.java,
                     "app_database"
-                ).fallbackToDestructiveMigration()/* .addCallback(ProductDatabaseCallBack(scope)) */.build()
+                ).build()
                 INSTANCE = instance
                 return instance
             }
