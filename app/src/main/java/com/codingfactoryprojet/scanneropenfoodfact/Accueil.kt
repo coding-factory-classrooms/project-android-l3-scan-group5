@@ -10,7 +10,7 @@ import com.codingfactoryprojet.scanneropenfoodfact.scanner.ScannerBarreCodebis
 
 class HomeActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityAccueilBinding
+    private lateinit var binding: HomeActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
