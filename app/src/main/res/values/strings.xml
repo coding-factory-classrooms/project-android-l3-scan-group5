@@ -4,6 +4,8 @@
     <string name="bottom_navigation_menu_home">Home</string>
     <string name="bottom_navigation_menu_scan">Scan</string>
     <string name="bottom_navigation_menu_history">History</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
 
 
 </resources>
