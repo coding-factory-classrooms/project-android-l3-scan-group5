@@ -4,7 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.codingfactoryprojet.scanneropenfoodfact.databinding.ActivityHomeBinding
-import com.codingfactoryprojet.scanneropenfoodfact.scanner.ScannerBarreCode
+import com.codingfactoryprojet.scanneropenfoodfact.scanner.BarCodeScannerActivity
+
 
 
 class HomeActivity : AppCompatActivity() {
@@ -21,7 +22,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun scanCode(){
-        val intent = Intent(this@HomeActivity, ScannerBarreCode::class.java)
+        val intent = Intent(this@HomeActivity, BarCodeScannerActivity::class.java)
         startActivity(intent)
     }
 }
