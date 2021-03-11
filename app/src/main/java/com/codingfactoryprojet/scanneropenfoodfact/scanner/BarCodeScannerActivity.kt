@@ -1,18 +1,15 @@
 package com.codingfactoryprojet.scanneropenfoodfact.scanner
 
+import android.app.Activity
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.budiyev.android.codescanner.AutoFocusMode
-import com.budiyev.android.codescanner.CodeScanner
-import com.budiyev.android.codescanner.DecodeCallback
-import com.budiyev.android.codescanner.ErrorCallback
-import com.budiyev.android.codescanner.ScanMode
+import com.budiyev.android.codescanner.*
 import com.codingfactoryprojet.scanneropenfoodfact.databinding.ActivityScannerBinding
-import com.codingfactoryprojet.scanneropenfoodfact.entity.product.getProductData
 
 
 private const val CAMERA_REQUEST_CODE = 101
@@ -81,8 +78,10 @@ class BarCodeScannerActivity : AppCompatActivity() {
     }
 
     fun handleBarCode(barcode: String) {
-        getProductData(barcode = barcode.toLong())
-        super.finish()
+        val returnIntent = Intent()
+        returnIntent.putExtra("barcode", barcode)
+        setResult(Activity.RESULT_OK, returnIntent)
+        finish()
     }
 
     override fun onRequestPermissionsResult(
