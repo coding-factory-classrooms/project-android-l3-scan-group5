@@ -1,22 +1,20 @@
 package com.codingfactoryprojet.scanneropenfoodfact.service.product
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.codingfactoryprojet.scanneropenfoodfact.entity.product.Product
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ProductDao {
     @Query("SELECT * FROM product")
-    fun getAll(): List<Product>
+    fun getAll(): Flow<List<Product>>
 
     @Query("SELECT * FROM product WHERE barcode = :barcode")
     fun getProductByBarcode(barcode: Long): Product
 
-    @Insert
-    fun insert(vararg product: Product)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(vararg product: Product)
 
     @Delete
-    fun delete(product: Product)
+    suspend fun delete(product: Product)
 }

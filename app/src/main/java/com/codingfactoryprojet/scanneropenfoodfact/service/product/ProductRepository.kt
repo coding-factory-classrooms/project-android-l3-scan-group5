@@ -2,10 +2,13 @@ package com.codingfactoryprojet.scanneropenfoodfact.service.product
 
 import androidx.annotation.WorkerThread
 import com.codingfactoryprojet.scanneropenfoodfact.entity.product.Product
+import kotlinx.coroutines.flow.Flow
 
+// Declares the DAO as a private property in the constructor. Pass in the DAO
+// instead of the whole database, because we only need access to the DAO
 class ProductRepository(private val productDao: ProductDao) {
 
-    val allProducts: List<Product> = productDao.getAll()
+    val allProducts: Flow<List<Product>> = productDao.getAll()
 
     fun getProductByBarcode(barcode: Long) {
         productDao.getProductByBarcode(barcode)
@@ -17,7 +20,7 @@ class ProductRepository(private val productDao: ProductDao) {
         productDao.insert(product)
     }
 
-    fun delete(product: Product){
+    suspend fun delete(product: Product){
         productDao.delete(product)
     }
 
