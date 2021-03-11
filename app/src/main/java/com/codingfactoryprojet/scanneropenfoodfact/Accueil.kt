@@ -8,7 +8,7 @@ import com.codingfactoryprojet.scanneropenfoodfact.databinding.ActivityAccueilBi
 import com.codingfactoryprojet.scanneropenfoodfact.scanner.ScannerBarreCodebis
 
 
-class Accueil : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAccueilBinding
 
