@@ -1,6 +1,5 @@
 package com.codingfactoryprojet.scanneropenfoodfact.productlist
 
-import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,7 +8,6 @@ import com.codingfactoryprojet.scanneropenfoodfact.R
 import com.codingfactoryprojet.scanneropenfoodfact.databinding.ItemProductBinding
 import com.codingfactoryprojet.scanneropenfoodfact.entity.product.Product
 import com.squareup.picasso.Picasso
-import javax.xml.transform.URIResolver
 
 class ProductListAdapter(private var products: List<Product>) :
     RecyclerView.Adapter<ProductListAdapter.ViewHolder>(){
