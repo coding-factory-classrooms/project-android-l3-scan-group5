@@ -10,7 +10,6 @@ class ProductAdapter(private var products: List<Product>) : RecyclerView.Adapter
     class ViewHolder(val binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root) {
 
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemProductBinding.inflate(inflater, parent, false)
