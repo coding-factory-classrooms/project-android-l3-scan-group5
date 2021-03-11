@@ -1,38 +1,30 @@
 package com.codingfactoryprojet.scanneropenfoodfact.productlist
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.codingfactoryprojet.scanneropenfoodfact.R
-import kotlinx.android.synthetic.main.item_product.view.*
-
-data class Product (
-    val id : Int,
-    val name : String,
-    val imageId : Int,
-    val nutritionImageId : Int
-)
-
-//fake data for now (feat05)
-var products = listOf(
-Product(142, "chocapic", R.drawable.product_chocapic, R.drawable.nutrition_grade_b),
-Product(141, "chocapic", R.drawable.product_chocapic, R.drawable.nutrition_grade_b),
-Product(140, "chocapic", R.drawable.product_chocapic, R.drawable.nutrition_grade_b),
-Product(139, "chocapic", R.drawable.product_chocapic, R.drawable.nutrition_grade_b),
-Product(138, "chocapic", R.drawable.product_chocapic, R.drawable.nutrition_grade_b),
-Product(137, "chocapic", R.drawable.product_chocapic, R.drawable.nutrition_grade_b),
-Product(136, "chocapic", R.drawable.product_chocapic, R.drawable.nutrition_grade_b)
-)
+import androidx.lifecycle.*
+import com.codingfactoryprojet.scanneropenfoodfact.entity.product.Product
+import com.codingfactoryprojet.scanneropenfoodfact.service.product.ProductRepository
+import kotlinx.coroutines.launch
+import java.lang.IllegalArgumentException
 
 
-class ProductListViewModel : ViewModel() {
+class ProductListViewModel(private val repository: ProductRepository) : ViewModel() {
+    // Using LiveData and caching what allProducts returns has several benefits:
+    // - We can put an observer on the data and only update the
+    //   the UI when the data actually changes. (equivalent of useEffect in react native)
+    // - Repository is completely separated from the UI through the ViewModel.
+    val allProducts: LiveData<List<Product>> = repository.allProducts.asLiveData()
 
-    private val productsLiveData = MutableLiveData<List<Product>>()
-    fun getProductsLiveData(): LiveData<List<Product>> = productsLiveData
-
-    fun loadProducts() {
-        //fake data for now (feat05)
-        productsLiveData.value = products
+    fun insert(product: Product) = viewModelScope.launch {
+        repository.insert(product)
     }
+}
 
+class ProductListViewModelFactory(private val repository: ProductRepository): ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if(modelClass.isAssignableFrom(ProductListViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return ProductListViewModel(repository) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
 }

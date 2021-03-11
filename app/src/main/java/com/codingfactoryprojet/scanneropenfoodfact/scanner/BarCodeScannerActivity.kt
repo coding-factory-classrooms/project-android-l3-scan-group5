@@ -1,23 +1,21 @@
 package com.codingfactoryprojet.scanneropenfoodfact.scanner
 
+import android.app.Activity
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.budiyev.android.codescanner.AutoFocusMode
-import com.budiyev.android.codescanner.CodeScanner
-import com.budiyev.android.codescanner.DecodeCallback
-import com.budiyev.android.codescanner.ErrorCallback
-import com.budiyev.android.codescanner.ScanMode
+import com.budiyev.android.codescanner.*
 import com.codingfactoryprojet.scanneropenfoodfact.databinding.ActivityScannerBinding
 
 
 private const val CAMERA_REQUEST_CODE = 101
 
 class BarCodeScannerActivity : AppCompatActivity() {
-    private lateinit var scannerbarcode: CodeScanner
+    private lateinit var barcodeScanner: CodeScanner
     private lateinit var binding: ActivityScannerBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,25 +24,24 @@ class BarCodeScannerActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupPermissions()
 
-        val result:String
-        scannerbarcode = CodeScanner(this, binding.scannerView)
-        scannerbarcode.camera = CodeScanner.CAMERA_BACK
-        scannerbarcode.formats = CodeScanner.ALL_FORMATS
+        barcodeScanner = CodeScanner(this, binding.scannerView)
+        barcodeScanner.camera = CodeScanner.CAMERA_BACK
+        barcodeScanner.formats = CodeScanner.ALL_FORMATS
 
-        scannerbarcode.autoFocusMode = AutoFocusMode.SAFE
-        scannerbarcode.scanMode = ScanMode.SINGLE
+        barcodeScanner.autoFocusMode = AutoFocusMode.SAFE
+        barcodeScanner.scanMode = ScanMode.SINGLE
 
-        scannerbarcode.isAutoFocusEnabled = true
-        scannerbarcode.isFlashEnabled = false
+        barcodeScanner.isAutoFocusEnabled = true
+        barcodeScanner.isFlashEnabled = false
 
-        scannerbarcode.decodeCallback = DecodeCallback {
+        barcodeScanner.decodeCallback = DecodeCallback {
             runOnUiThread {
                 binding.resultTextView.text = it.text
-                
+                handleBarCode(it.text)
             }
         }
 
-        scannerbarcode.errorCallback = ErrorCallback {
+        barcodeScanner.errorCallback = ErrorCallback {
             runOnUiThread {
                 Toast.makeText(this@BarCodeScannerActivity, "Camera initialisation error: ${it.message}", Toast.LENGTH_LONG).show()
             }
@@ -52,17 +49,17 @@ class BarCodeScannerActivity : AppCompatActivity() {
 
 
         binding.scannerView.setOnClickListener {
-            scannerbarcode.startPreview()
+            barcodeScanner.startPreview()
         }
     }
 
     override fun onResume() {
         super.onResume()
-        scannerbarcode.startPreview()
+        barcodeScanner.startPreview()
     }
 
     override fun onPause() {
-        scannerbarcode.releaseResources()
+        barcodeScanner.releaseResources()
         super.onPause()
     }
 
@@ -78,6 +75,13 @@ class BarCodeScannerActivity : AppCompatActivity() {
             this, arrayOf(android.Manifest.permission.CAMERA),
             CAMERA_REQUEST_CODE
         )
+    }
+
+    fun handleBarCode(barcode: String) {
+        val returnIntent = Intent()
+        returnIntent.putExtra("barcode", barcode)
+        setResult(Activity.RESULT_OK, returnIntent)
+        finish()
     }
 
     override fun onRequestPermissionsResult(
