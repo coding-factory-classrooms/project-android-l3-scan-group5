@@ -75,7 +75,7 @@ class ProductListActivity : AppCompatActivity() {
                     val labels = if(data.has("labels")) data.getString("labels") else "Unknown"
                     val categories = if(data.has("categories")) data.getString("categories") else "Unknown"
                     val nutriscore = if(data.has("nutriscore_grade")) data.getString("nutriscore_grade") else "Unknown"
-                    val caloriesPer100g = if(data.has("nutriments")) data.getJSONObject("nutriments").getInt("energy-kcal") else "Unknown"
+                    val caloriesPer100g = if(data.has("nutriments"))  if((data.getJSONObject("nutriments").has("energy-kcal"))) data.getJSONObject("nutriments").getInt("energy-kcal") else 0 else 0
                     val product = Product(
                         barcode = barcode,
                         name = productName,
