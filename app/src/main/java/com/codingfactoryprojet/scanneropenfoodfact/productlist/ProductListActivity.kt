@@ -70,19 +70,19 @@ class ProductListActivity : AppCompatActivity() {
                 val status = JSONObject(String(bytes)).getInt("status")
                 if(status == 1) {
                     val data = JSONObject(String(bytes))?.getJSONObject("product")
-                    val productName = data.getString("product_name")
-                    val imageURl = data.getString("image_url")
-                    val labels = data.getString("labels")
-                    val categories = data.getString("categories")
-                    val nutriscore = data.getString("nutriscore_grade")
-                    val caloriesPer100g = data.getJSONObject("nutriments").getInt("energy-kcal")
+                    val productName = if(data.has("product_name")) data.getString("product_name") else  "Unknown";
+                    val imageURl = if(data.has("image_url")) data.getString("image_url") else "https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/reference_guide/cats_and_excessive_meowing_ref_guide/1800x1200_cats_and_excessive_meowing_ref_guide.jpg"
+                    val labels = if(data.has("labels")) data.getString("labels") else "Unknown"
+                    val categories = if(data.has("categories")) data.getString("categories") else "Unknown"
+                    val nutriscore = if(data.has("nutriscore_grade")) data.getString("nutriscore_grade") else "Unknown"
+                    val caloriesPer100g = if(data.has("nutriments")) data.getJSONObject("nutriments").getInt("energy-kcal") else "Unknown"
                     val product = Product(
                         barcode = barcode,
                         name = productName,
                         imageURL = imageURl,
                         labels = labels,
                         categories = categories,
-                        caloriesPer100g = caloriesPer100g,
+                        caloriesPer100g = caloriesPer100g as Int,
                         nutriscore = nutriscore
                     )
                     model.insert(product)
