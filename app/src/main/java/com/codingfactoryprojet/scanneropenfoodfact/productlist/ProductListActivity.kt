@@ -2,21 +2,21 @@ package com.codingfactoryprojet.scanneropenfoodfact.productlist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.LinearLayout
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.codingfactoryprojet.scanneropenfoodfact.R
 import com.codingfactoryprojet.scanneropenfoodfact.databinding.ActivityProductListBinding
+import com.codingfactoryprojet.scanneropenfoodfact.entity.product.Product
 
 class ProductListActivity : AppCompatActivity() {
 
-    private val model: ProductListViewModel by viewModels()
+    private val model: ProductListViewModel by viewModels {
+        ProductListViewModelFactory((application as ProductApplication).repository
+        )
+    }
 
     private lateinit var binding: ActivityProductListBinding
-    private lateinit var adapter: ProductAdapter
-
-
+    private lateinit var adapter: ProductListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,15 +24,14 @@ class ProductListActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //submit Live Data to get Products
-        model.getProductsLiveData().observe(this, Observer { products -> updateProducts(products!!)})
+        model.allProducts.observe(this, Observer { products -> updateProducts(products!!)})
 
 
-        adapter = ProductAdapter(listOf())
+        adapter = ProductListAdapter(listOf())
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
 
-        //call the ViewModel.loadProducts function
-        model.loadProducts()
+        model.allProducts
     }
 
     private fun updateProducts(products: List<Product>) {
