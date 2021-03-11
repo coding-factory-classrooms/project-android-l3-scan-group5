@@ -21,7 +21,7 @@
         </activity>
         <activity android:name=".productlist.ProductListActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".scanner.ScannerBarreCodebis"></activity>
+        <activity android:name=".scanner.BarcodeScannerbis"></activity>
     </application>
 
 </manifest>
