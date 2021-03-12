@@ -5,10 +5,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import android.view.MenuItem
 import com.codingfactoryprojet.scanneropenfoodfact.MainActivity
 import com.codingfactoryprojet.scanneropenfoodfact.R
 import com.codingfactoryprojet.scanneropenfoodfact.databinding.ActivityProductListBinding
