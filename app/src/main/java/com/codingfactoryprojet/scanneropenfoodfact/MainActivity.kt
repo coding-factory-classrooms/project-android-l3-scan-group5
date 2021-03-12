@@ -1,13 +1,9 @@
 package com.codingfactoryprojet.scanneropenfoodfact
 
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
-import androidx.core.graphics.toColor
-import androidx.core.graphics.toColorLong
 import com.codingfactoryprojet.scanneropenfoodfact.databinding.ActivityMainBinding
 import com.codingfactoryprojet.scanneropenfoodfact.productlist.ProductListActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
