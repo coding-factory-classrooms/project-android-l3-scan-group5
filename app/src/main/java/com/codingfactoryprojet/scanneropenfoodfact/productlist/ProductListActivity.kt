@@ -4,14 +4,20 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.codingfactoryprojet.scanneropenfoodfact.MainActivity
+import com.codingfactoryprojet.scanneropenfoodfact.R
 import com.codingfactoryprojet.scanneropenfoodfact.databinding.ActivityProductListBinding
 import com.codingfactoryprojet.scanneropenfoodfact.entity.product.Product
 import com.codingfactoryprojet.scanneropenfoodfact.scanner.BarCodeScannerActivity
 import com.github.kittinunf.fuel.Fuel
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.activity_product_list.*
 import org.json.JSONObject
 
 const val TAG = "ProductListActivity"
@@ -41,10 +47,14 @@ class ProductListActivity : AppCompatActivity() {
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
 
+        binding.bottomNavigation.selectedItemId = R.id.Product
+
         binding.scanProductButton.setOnClickListener {
             val intent = Intent(this, BarCodeScannerActivity::class.java)
             startActivityForResult(intent, newScannedProductRequestCode)
         }
+
+        bottom_navigation.setOnNavigationItemSelectedListener(bottomNavigationListener)
 
         model.allProducts
     }
@@ -101,5 +111,24 @@ class ProductListActivity : AppCompatActivity() {
                 ).show()
             }
         }
+    }
+
+    private val bottomNavigationListener = BottomNavigationView.OnNavigationItemSelectedListener { item: MenuItem ->
+        Log.i("MainActivity", "ok: ${item.itemId} ")
+        when (item.itemId) {
+            R.id.Home -> {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                overridePendingTransition(0,0)
+                true
+            }
+            R.id.Product -> {
+                val intent = Intent(this, ProductListActivity::class.java)
+                startActivity(intent)
+                overridePendingTransition(0,0)
+                true
+            }
+        }
+        false
     }
 }
