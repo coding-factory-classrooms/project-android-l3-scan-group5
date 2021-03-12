@@ -14,8 +14,8 @@ class ProductRepository(private val productDao: ProductDao) {
 
     val allProducts: Flow<List<Product>> = productDao.getAll()
 
-    fun getProductByBarcode(barcode: Long) {
-        productDao.getProductByBarcode(barcode)
+    fun getProductByBarcode(barcode: Long) : Product {
+        return productDao.getProductByBarcode(barcode)
     }
 
     @Suppress("RedundantSuspendModifier")
