@@ -24,4 +24,17 @@ class ProductRepository(private val productDao: ProductDao) {
         productDao.delete(product)
     }
 
+    companion object {
+        @Volatile
+        private var INSTANCE: ProductRepository? = null
+
+        fun getRepository(productDao: ProductDao
+        ): ProductRepository {
+            if(INSTANCE == null) {
+                return ProductRepository(productDao)
+            }
+            else return INSTANCE as ProductRepository
+        }
+    }
+
 }
