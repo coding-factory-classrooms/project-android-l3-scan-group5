@@ -1,5 +1,7 @@
 package com.codingfactoryprojet.scanneropenfoodfact
 
+import com.codingfactoryprojet.scanneropenfoodfact.service.product.ProductDao
+import com.codingfactoryprojet.scanneropenfoodfact.service.product.ProductRepository
 import org.junit.Test
 
 import org.junit.Assert.*
