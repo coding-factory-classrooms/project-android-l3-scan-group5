@@ -36,7 +36,6 @@ class ProductListAdapter(private var products: List<Product>) :
             Picasso.get().load(product.imageURL).into(productImageView)
         }
         holder.itemView.setOnClickListener{
-            Toast.makeText(context,"Cick", Toast.LENGTH_SHORT).show()
             val intent = Intent(context,ProductDetail::class.java).apply {
                 putExtra("name",product.name)
                 putExtra("calories100", product.caloriesPer100g)
