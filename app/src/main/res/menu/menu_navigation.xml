@@ -10,8 +10,4 @@
         android:title="Product"
         android:icon="@drawable/ic_code_scanner_auto_focus_on" />
 
-    <item
-        android:id="@+id/About"
-        android:title="Home"
-        android:icon="@drawable/ic_code_scanner_auto_focus_on" />
 </menu>

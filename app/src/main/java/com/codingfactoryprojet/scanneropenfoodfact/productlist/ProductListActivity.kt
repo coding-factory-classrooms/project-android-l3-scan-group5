@@ -5,20 +5,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-<<<<<<< HEAD
-import android.widget.Toast
-import androidx.activity.viewModels
-import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.codingfactoryprojet.scanneropenfoodfact.ProductDetail
-=======
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.codingfactoryprojet.scanneropenfoodfact.MainActivity
 import com.codingfactoryprojet.scanneropenfoodfact.R
->>>>>>> develop
 import com.codingfactoryprojet.scanneropenfoodfact.databinding.ActivityProductListBinding
 import com.codingfactoryprojet.scanneropenfoodfact.entity.product.Product
 import com.codingfactoryprojet.scanneropenfoodfact.scanner.BarCodeScannerActivity
@@ -96,10 +88,6 @@ class ProductListActivity : AppCompatActivity() {
             }
         }
         false
-    }
-
-    private fun getProduit(){
-
     }
 
 }
