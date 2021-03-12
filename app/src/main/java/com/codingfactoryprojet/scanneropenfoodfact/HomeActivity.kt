@@ -24,5 +24,6 @@ class HomeActivity : AppCompatActivity() {
     private fun scanCode(){
         val intent = Intent(this@HomeActivity, BarCodeScannerActivity::class.java)
         startActivity(intent)
+
     }
 }

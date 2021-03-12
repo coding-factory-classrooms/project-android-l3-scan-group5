@@ -4,10 +4,12 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.codingfactoryprojet.scanneropenfoodfact.ProductDetail
 import com.codingfactoryprojet.scanneropenfoodfact.databinding.ActivityProductListBinding
 import com.codingfactoryprojet.scanneropenfoodfact.entity.product.Product
 import com.codingfactoryprojet.scanneropenfoodfact.scanner.BarCodeScannerActivity
@@ -47,6 +49,7 @@ class ProductListActivity : AppCompatActivity() {
         }
 
         model.allProducts
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -102,4 +105,9 @@ class ProductListActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun getProduit(){
+
+    }
+
 }
