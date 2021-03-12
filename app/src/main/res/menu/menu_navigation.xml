@@ -3,15 +3,15 @@
     <item
         android:id="@+id/Home"
         android:title="Home"
-        android:icon="@drawable/abc_vector_test" />
-
-    <item
-        android:id="@+id/favorite"
-        android:title="Home"
         android:icon="@drawable/ic_code_scanner_auto_focus_on" />
 
     <item
-        android:id="@+id/about"
+        android:id="@+id/Product"
+        android:title="Product"
+        android:icon="@drawable/ic_code_scanner_auto_focus_on" />
+
+    <item
+        android:id="@+id/About"
         android:title="Home"
-        android:icon="@drawable/ic_code_scanner_auto_focus_off" />
+        android:icon="@drawable/ic_code_scanner_auto_focus_on" />
 </menu>
